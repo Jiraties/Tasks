@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css");
+
+:root {
+  --primary-blue: #4f80ff;
+  --light-1: #2e2f3d;
+  --light-2: #373852;
+  --dark-1: #252633;
+  --background: #262732;
+  --font: #fff;
+  --light-text: #dadada;
+}
+
+html {
+  font-family: "Poppins", "Noto Sans Thai", sans-serif;
+}
+
+h3 {
+  margin: 0px !important;
+  font-size: 1.7rem;
+}
+
+p {
+  margin: 0px !important;
+}
+
+body {
+  background-color: var(--background);
+  min-height: 100vh;
+  font-family: "Poppins", "Noto Sans Thai", sans-serif;
+  color: var(--font);
+  overflow-x: hidden;
+  padding: 0 25vw 0 25vw;
+}
+
+.home {
+  padding: 1rem;
+}
+
+.newTask {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--light-1);
+
+  input {
+    font-family: "Poppins", "Noto Sans Thai", sans-serif;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 2px solid var(--light-2);
+    background-color: transparent;
+    color: #fff;
+  }
+
+  button {
+    font-family: "Poppins", "Noto Sans Thai", sans-serif;
+    border-radius: 1rem;
+    color: #fff;
+    border: none;
+    width: 10rem;
+    background-color: var(--primary-blue);
+  }
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3rem;
+
+  &__item {
+    padding: 2rem;
+    background-color: var(--light-1);
+    border-radius: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+  }
+}
