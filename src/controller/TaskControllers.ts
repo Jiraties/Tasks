@@ -1,12 +1,14 @@
+import { RequestHandler } from "express";
+
 const Tasks = require("../models/TaskModels");
 
-exports.renderHomePage = (req, res) => {
-  Tasks.get(tasks => {
+export const renderHomePage: RequestHandler = (req, res) => {
+  Tasks.get((tasks: any[]) => {
     res.render("home", { tasks });
   });
 };
 
-exports.addTask = (req, res) => {
+export const addTask: RequestHandler = (req, res) => {
   console.log(req.body);
   const task = new Tasks(req.body.title);
   task.save();

@@ -13,5 +13,9 @@
   },
   "scripts": {
     "sass": "node-sass --watch ./public/sass/main.scss ./public/sass/styles.css"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/uuid": "^8.3.4"
   }
 }

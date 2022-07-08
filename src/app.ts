@@ -1,10 +1,10 @@
-const express = require("express");
-const path = require("path");
+import express from "express";
+import path from "path";
+
+import userRoutes from "./routes/UserRoutes";
+import apiRoutes from "./routes/ApiRoutes";
 
 const app = express();
-
-const userRoutes = require("./routes/UserRoutes");
-const apiRoutes = require("./routes/ApiRoutes");
 
 app.set("view engine", "ejs");
 app.set("views", "views");

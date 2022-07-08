@@ -1,9 +1,14 @@
-const fs = require("fs");
-const path = require("path");
-const { v4: uuid } = require("uuid");
+import fs from "fs";
+import path from "path";
+import { v4 as uuid } from "uuid";
 
 class Tasks {
-  constructor(title) {
+  private title: string;
+  private createdAt: string;
+  private checked: boolean;
+  private id: string;
+
+  constructor(title: string) {
     this.title = title;
     this.createdAt = new Date().toISOString();
     this.checked = false;
@@ -16,7 +21,7 @@ class Tasks {
       (error, data) => {
         if (error) throw error;
 
-        const tasks = JSON.parse(data);
+        const tasks = JSON.parse(data.toString());
         tasks.push(this);
 
         fs.writeFile(
@@ -30,13 +35,13 @@ class Tasks {
     );
   }
 
-  static get(cb) {
+  static get(cb: (tasks: any[]) => void) {
     fs.readFile(
       path.join(__dirname, "..", "data", "tasks.json"),
       (error, data) => {
         if (error) throw error;
 
-        const tasks = JSON.parse(data);
+        const tasks = JSON.parse(data.toString());
         return cb(tasks);
       }
     );
