@@ -12,7 +12,7 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
-    "sass": "node-sass --watch ./public/sass/main.scss ./public/sass/styles.css"
+    "sass": "node-sass --watch ./src/public/sass/main.scss ./src/public/sass/main.css"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

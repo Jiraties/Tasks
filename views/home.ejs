@@ -9,29 +9,45 @@
   </head>
   <body>
     <main class="home">
-      <h1>Welcome to Tasks!</h1>
+      <h1>
+        Welcome to Tasks! <span>You have <%= tasks.length %> tasks left </span>
+      </h1>
       <form class="newTask" action="/api/addTask" method="POST">
         <input name="title" type="text" placeholder="Task Name" />
         <button type="submit">Add Task</button>
       </form>
-      <div class="tasks">
-        <% if (tasks.length !== 0) { %> <% tasks.forEach(task => { %>
+      <div class="tasks__wrapper">
+        <div class="tasks">
+          <% if (tasks.length !== 0) { %> <% tasks.forEach(task => { %>
 
-        <div class="tasks__item">
-          <div class="tasks__title">
-            <h3><%= task.title %></h3>
-            <p>
-              <%= new Date(task.createdAt).toLocaleString("en-US", {dateStyle:
-              "medium", timeStyle: "medium", }) %>
-            </p>
+          <div class="tasks__item">
+            <div class="tasks__title">
+              <h3><%= task.title %></h3>
+              <p>
+                <%= new Date(task.createdAt).toLocaleString("en-US", {dateStyle:
+                "medium", timeStyle: "medium", }) %>
+              </p>
+            </div>
+
+            <input class="tasks__item--checkbox" taskId="<%= task.id %>" <%=
+            task.checked ? "checked" : "" %> type="checkbox" />
           </div>
 
-          <input checked="<%= task.checked %>" type="checkbox" />
+          <% }) %> <% } %>
         </div>
-
-        <% }) %> <% } %>
       </div>
     </main>
   </body>
-  <script></script>
+  <script>
+    const taskCheckbox = document.querySelectorAll(".tasks__item--checkbox");
+
+    taskCheckbox.forEach(task => {
+      task.addEventListener("change", e => {
+        const taskId = e.target.getAttribute("taskId");
+        const checkedTask = e.target.checked;
+
+        fetch(`/api/checkTask/${taskId}`);
+      });
+    });
+  </script>
 </html>

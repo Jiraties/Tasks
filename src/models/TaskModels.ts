@@ -35,6 +35,44 @@ class Tasks {
     );
   }
 
+  static findTask(id: string, cb: (task: any) => void) {
+    fs.readFile(
+      path.join(__dirname, "..", "data", "tasks.json"),
+      (error, data) => {
+        const tasks = JSON.parse(data.toString());
+        const foundedTask = tasks.find((task: any) => task.id === id);
+
+        return cb(foundedTask);
+      }
+    );
+  }
+
+  static checkTask(id: string) {
+    fs.readFile(
+      path.join(__dirname, "..", "data", "tasks.json"),
+      (error, data) => {
+        if (error) throw error;
+
+        const tasks = JSON.parse(data.toString());
+        const foundedTask = tasks.find((task: any) => task.id === id);
+        foundedTask.checked = !foundedTask.checked;
+
+        const filteredTasks = tasks.filter(
+          (task: any) => task.id !== foundedTask.id
+        );
+        const mergedTasks = [...filteredTasks, foundedTask];
+
+        fs.writeFile(
+          path.join(__dirname, "..", "data", "tasks.json"),
+          JSON.stringify(mergedTasks.sort((a: any, b: any) => a.checked)),
+          error => {
+            if (error) throw error;
+          }
+        );
+      }
+    );
+  }
+
   static get(cb: (tasks: any[]) => void) {
     fs.readFile(
       path.join(__dirname, "..", "data", "tasks.json"),

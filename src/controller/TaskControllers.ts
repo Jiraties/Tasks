@@ -14,3 +14,8 @@ export const addTask: RequestHandler = (req, res) => {
   task.save();
   res.redirect("/");
 };
+
+export const checkTask: RequestHandler = (req, res) => {
+  Tasks.checkTask(req.params.id);
+  console.log(req.params.id);
+};
